@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>employee_list</title>
+    <!-- 1. 导入CSS的全局样式 -->
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
+    <script th:src="@{/static/js/jquery-3.5.1.min.js}"></script>
+    <!-- 3. 导入bootstrap的js文件 -->
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <style type="text/css">
+        td, th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3 style="text-align: center">Employee_list</h3>
+    <table border="1" class="table table-bordered table-hover">
+        <tr class="success">
+            <th>id</th>
+            <th>emp_name</th>
+            <th>age</th>
+            <th>sex</th>
+            <th>email</th>
+            <th>options(<a th:href="@{/to/add}">添加员工</a>)</th>
+        </tr>
+        <tr th:each="employee,status:${page.list}">
+            <td th:text="${status.count}"></td>
+            <td th:text="${employee.emp_name}"></td>
+            <td th:text="${employee.age}"></td>
+            <td th:text="${employee.sex}"></td>
+            <td th:text="${employee.email}"></td>
+            <td>
+                <a class="btn btn-default btn-sm" th:href="@{'/to/delete'+${employee.emp_id}}">delete</a>
+                <a class="btn btn-default btn-sm" th:href="@{'/to/update'+${employee.emp_id}}">update</a>
+            </td>
+        </tr>
+
+    </table>
+    <div style="text-align: center">
+        <a class="btn btn-default btn-sm" th:if="${page.hasPreviousPage}" th:href="@{/employee/page/1}">首页</a>
+        <a class="btn btn-default btn-sm" th:if="${page.hasPreviousPage}" th:href="@{'/employee/page/'+${page.prePage}}">上一页</a>
+        <span th:each="num:${page.navigatepageNums}">
+            <a th:if="${page.pageNum == num}"  class="active btn btn-default btn-sm" th:href="@{'/employee/page/'+${num}}" th:text="${num}"></a>
+            <a th:if="${page.pageNum != num}"  class="btn btn-default btn-sm" th:href="@{'/employee/page/'+${num}}" th:text="${num}"></a>
+        </span>
+        <a class="btn btn-default btn-sm" th:if="${page.hasNextPage}" th:href="@{'/employee/page/'+${page.nextPage}}">下一页</a>
+        <a class="btn btn-default btn-sm" th:if="${page.hasNextPage}" th:href="@{'/employee/page/'+${page.pages}}">末页</a>
+    </div>
+</div>
+</body>
+</html>

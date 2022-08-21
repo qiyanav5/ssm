@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>删除用户信息</title>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
+    <script th:src="@{/static/js/jquery-3.5.1.min.js}"></script>
+    <!-- 3. 导入bootstrap的js文件 -->
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <style type="text/css">
+        td, th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3 style="text-align: center">Employee_delete</h3>
+    <form th:action="@{/employee/delete}" method="post">
+        <input type="hidden" name="emp_id" th:value="${employee_delete.emp_id}">
+        <table border="1" class="table table-bordered table-hover">
+            <tr>
+                <td>emp_name</td>
+                <td>
+                    <input readonly="readonly" type="text" class="form-control" name="emp_name" th:value="${employee_delete.emp_name}">
+                </td>
+            </tr>
+            <tr>
+                <td>age</td>
+                <td>
+                    <input readonly="readonly" type="text" class="form-control" name="age" th:value="${employee_delete.age}">
+                </td>
+            </tr>
+            <tr>
+                <td>sex</td>
+                <td>
+                    <input disabled type="radio" name="sex" value="男" checked="checked" th:field="${employee_delete.sex}">男
+                    <input disabled type="radio" name="sex" value="女" th:field="${employee_delete.sex}">女
+                </td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td>
+                    <input readonly="readonly" type="text" class="form-control" name="email" th:value="${employee_delete.email}">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input class="btn btn-primary" type="submit" value="delete"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <input readonly="readonly" style="text-align: center" type="text" class="form-control" value="请确定要删除的信息是否正确！">
+
+</div>
+</body>
+</html>

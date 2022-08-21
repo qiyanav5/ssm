@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>employee_add</title>
+    <!-- 1. 导入CSS的全局样式 -->
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
+    <script th:src="@{/static/js/jquery-3.5.1.min.js}"></script>
+    <!-- 3. 导入bootstrap的js文件 -->
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <style type="text/css">
+        td, th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3 style="text-align: center">Employee_add</h3>
+    <form method="post" th:action="@{/employee/add}">
+        <table border="1" class="table table-bordered table-hover">
+            <tr>
+                <td>emp_name</td>
+                <td>
+                    <input type="text" class="form-control" name="emp_name">
+                </td>
+            </tr>
+            <tr>
+                <td>age</td>
+                <td>
+                    <input type="text" class="form-control" name="age">
+                </td>
+            </tr>
+            <tr>
+                <td>sex</td>
+                <td>
+                    <input type="radio" name="sex" value="男" checked="checked">男
+                    <input type="radio" name="sex" value="女">女
+                </td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td>
+                    <input type="text" class="form-control" name="email">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input class="btn btn-primary" type="submit" value="add"/>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</body>
+</html>
